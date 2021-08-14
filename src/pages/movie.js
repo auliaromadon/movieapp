@@ -67,7 +67,7 @@ export default class Movie extends React.Component{
                                         style={{ width: 300, margin: '1rem', borderRadius: '50%' }}
                                         cover={<img alt="Movie" src={item.image} height={400} width={300} />}
                                     >
-                                        <Meta title={item.title} style={{backgroundColor: "#000000", color: 'white', padding: '1rem'}}/>
+                                        <Meta title={item.title} style={{backgroundColor: "#000000", textAlign: 'center', color: 'white', padding: '1rem'}}/>
                                     </Card>
                             )) 
 
