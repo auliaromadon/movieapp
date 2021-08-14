@@ -1,8 +1,11 @@
-import React from "react"
-// import Navbar from "../component/navbar"
-import List  from "../component/list"
+import React, {useState } from "react"
+import { Card, Image, Typography  } from 'antd'
 import { base_url, movies_image_url } from "../config.js";
+import Star from "../component/star/index"
 import axios from "axios"
+
+const { Title } = Typography;
+const { Meta } = Card;
 
 export default class Movie extends React.Component{
     constructor(){
@@ -11,15 +14,15 @@ export default class Movie extends React.Component{
             movies: [],
             token: "",
         }
-
+        
         // if (localStorage.getItem("token")) {
-        //     this.state.token = localStorage.getItem("token")
-        // } else {
-        //     window.location = "/login"
-        // }
-
-        this.headerConfig.bind(this)
-    }
+            //     this.state.token = localStorage.getItem("token")
+            // } else {
+                //     window.location = "/login"
+                // }
+                
+                this.headerConfig.bind(this)
+            }
 
     headerConfig = () => {
         let header = {
@@ -52,22 +55,26 @@ export default class Movie extends React.Component{
 
     render(){
         return (
-            <div>
-               {/* <Navbar /> */}
-               <div className="container">
-                   <h3 className="text-bold text-info mt-2">Movie List</h3>
-                   <div className="row">
-                       { this.state.movies.map( item => (
-                           <List
-                           key = {item.id}
-                           title = {item.title}
-                           rating = {item.rating}
-                           actors = {item.actors_name}
-                            />
-                       )) }
-                   </div>
-                </div>
-            </div>
+            <>
+                    <div
+                        hoverable
+                        style={{ padding: "2rem", display: 'flex', flexDirection: 'row' }}
+                    >
+                        { 
+                            this.state.movies.map( item => (
+                                  <Card
+                                        hoverable
+                                        style={{ width: 300, margin: '1rem', borderRadius: '50%' }}
+                                        cover={<img alt="Movie" src={item.image} height={400} width={300} />}
+                                    >
+                                        <Meta title={item.title} style={{backgroundColor: "#000000", color: 'white', padding: '1rem'}}/>
+                                    </Card>
+                            )) 
+
+                       }
+                    </div>
+                    )
+            </>
         )
     }
 }
